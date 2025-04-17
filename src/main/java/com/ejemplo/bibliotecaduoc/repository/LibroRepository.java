@@ -38,7 +38,7 @@ public class LibroRepository {
     }
 
     public Libro actualizar(Libro libro) {
-        int id = 0;
+        Integer id = null;
         int posicion = 0;
 
         for (int i = 0; i < listaLibros.size(); i++) {
@@ -48,15 +48,20 @@ public class LibroRepository {
                 break;
             }
         }
-        Libro libroActualizado = new Libro();
-        libroActualizado.setId(id);
-        libroActualizado.setIsbn(libro.getIsbn());
-        libroActualizado.setTitulo(libro.getTitulo());
-        libroActualizado.setAutor(libro.getAutor());
-        libroActualizado.setEditorial(libro.getEditorial());
 
-        listaLibros.set(posicion, libroActualizado);
-        return libroActualizado;
+        if (id == null) {
+            return null;
+        } else {
+            Libro libroActualizado = new Libro();
+            libroActualizado.setId(id);
+            libroActualizado.setIsbn(libro.getIsbn());
+            libroActualizado.setTitulo(libro.getTitulo());
+            libroActualizado.setAutor(libro.getAutor());
+            libroActualizado.setEditorial(libro.getEditorial());
+
+            listaLibros.set(posicion, libroActualizado);
+            return libroActualizado;
+        }
     }
 
     public void eliminar(int id) {

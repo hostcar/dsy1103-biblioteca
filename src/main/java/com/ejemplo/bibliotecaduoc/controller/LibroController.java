@@ -2,7 +2,6 @@ package com.ejemplo.bibliotecaduoc.controller;
 
 import com.ejemplo.bibliotecaduoc.model.Libro;
 import com.ejemplo.bibliotecaduoc.services.LibroService;
-import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

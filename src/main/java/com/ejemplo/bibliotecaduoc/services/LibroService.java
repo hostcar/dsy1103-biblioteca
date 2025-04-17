@@ -31,8 +31,8 @@ public class LibroService {
     }
 
     public String deleteLibro(int id) {
-        Libro libro = repository.buscarPorId(id);
-        return "libro eliminado: " + libro.toString();
+        repository.eliminar(id);
+        return "libro eliminado";
     }
 
 }
