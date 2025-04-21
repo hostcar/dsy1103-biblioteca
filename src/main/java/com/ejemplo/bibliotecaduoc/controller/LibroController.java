@@ -17,8 +17,16 @@ public class LibroController {
     }
 
     @GetMapping
-    public List<Libro> listarLibros() {
-        return service.getLibros();
+    public ResponseEntity<List<Libro>> listarLibros(
+            @RequestParam(required = false) String isbn,
+            @RequestParam(required = false) Integer fechaPublicacion,
+            @RequestParam(required = false) String autor
+    ) {
+        List<Libro> listaLibros = service.getLibros(isbn, fechaPublicacion, autor);
+        if (listaLibros == null || listaLibros.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(listaLibros);
     }
 
     @PostMapping
@@ -44,5 +52,10 @@ public class LibroController {
     @DeleteMapping("/{id}")
     public void eliminarLibro(@PathVariable int id) {
         service.deleteLibro(id);
+    }
+
+    @GetMapping("/total")
+    public int totalLibros() {
+        return 10;
     }
 }

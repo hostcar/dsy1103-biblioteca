@@ -14,8 +14,19 @@ public class LibroService {
         this.repository = repository;
     }
 
-    public List<Libro> getLibros() {
-        return repository.obtenerLibros();
+    public List<Libro> getLibros(String isbn, Integer fechaPublicacion, String autor) {
+        List<Libro> listaOriginal = repository.obtenerLibros();
+        List<Libro> listafiltrada = listaOriginal;
+        if (isbn != null) {
+            listafiltrada = listaOriginal.stream().filter(l -> l.getIsbn().equals(isbn)).toList();
+        }
+        if (fechaPublicacion != null) {
+            listafiltrada = listafiltrada.stream().filter(l -> l.getFechaPublicacion() == fechaPublicacion).toList();
+        }
+        if (autor != null) {
+            listafiltrada = listafiltrada.stream().filter(l -> l.getAutor().equals(autor)).toList();
+        }
+        return listafiltrada;
     }
 
     public Libro saveLibro(Libro libro) {
